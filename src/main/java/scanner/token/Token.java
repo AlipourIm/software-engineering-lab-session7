@@ -38,16 +38,21 @@ public class Token {
         return result;
     }
 
-    public static Type getTyepFormString(String s) {
+    public static Boolean searchPatternExistsInString(String pattern_str, String str){
         Pattern pattern;
         Matcher matcher;
+        pattern = Pattern.compile(pattern_str);
+        matcher = pattern.matcher(str);
+        if (matcher.matches()) return Boolean.TRUE;
+        return Boolean.FALSE;
+    }
+
+    public static Type getTyepFormString(String s) {
         for (Type t : Type.values()) {
             if (t.toString().equals(s)) return t;
         }
         for (Type t : Type.values()) {
-            pattern = Pattern.compile(t.pattern);
-            matcher = pattern.matcher(s);
-            if (matcher.matches()) return t;
+            if (searchPatternExistsInString(t.pattern, s)) return t;
         }
 
 //        if (s.equals("class")||s.equals("extends")||s.equals("public")||s.equals("static")||s.equals("void")||s.equals("return")||s.equals("main")||
