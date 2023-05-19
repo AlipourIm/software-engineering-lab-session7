@@ -1,5 +1,6 @@
 package parser;
 
+import scanner.ScannerFacade;
 import scanner.token.Token;
 
 import java.util.*;
@@ -30,7 +31,7 @@ public class ParseTable {
                 } catch (Exception ignored) {
                 }
             } else {
-                terminals.put(i, new Token(Token.getTyepFormString(cols[i]), cols[i]));
+                terminals.put(i, ScannerFacade.newTokenFromString(cols[i]));
             }
         }
     }
